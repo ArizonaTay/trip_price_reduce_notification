@@ -1,6 +1,6 @@
 # Trip.com Price Drop Monitor
 
-Monitors hotel room prices on Trip.com and sends Telegram notifications when prices drop. Runs on **GitHub Actions** (free) once daily at 6:00 UTC — no server needed.
+Monitors hotel room prices on Trip.com and sends Telegram notifications when prices drop. Runs on **GitHub Actions** (free) once daily at 14:00 (UTC+8) — no server needed.
 
 ## Quick Start (GitHub Actions)
 
@@ -56,7 +56,7 @@ In your fork on GitHub, go to **Settings → Secrets and variables → Actions �
 
 - Go to the **Actions** tab in your fork.
 - Select **Monitor Trip.com Hotel Prices** and click **Run workflow** → **Run workflow**.
-- The workflow will run immediately and then once daily at 6:00 UTC.
+- The workflow will run immediately and then once daily at 14:00 (UTC+8).
 
 ### 7. Get notified
 

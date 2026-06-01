@@ -122,6 +122,8 @@ def scrape_hotel_price(hotel):
                     return 'SGD';
                 };
 
+                const excludePriceKw = ['breakfast', 'optional', 'add-on', 'add on', 'supplement', 'extra'];
+
                 const parsePriceAny = (text) => {
                     if (!text) return null;
                     const matches = [...text.matchAll(/(?:S\\s*\\$|HK\\s*\\$|NT\\s*\\$|A\\s*\\$|C\\s*\\$|[\\u00a5\\u20ac\\u00a3\\u20b9]|\\$|[A-Z]{2,3})\\s*[\\d,]{2,}\\.?\\d*/g)];
@@ -203,14 +205,17 @@ def scrape_hotel_price(hotel):
                         if (t.length > 0 && t.length < 120) {
                             const prices = parsePriceAny(t);
                             if (prices) {
-                                for (const p of prices) {
-                                    allPrices.push({
-                                        ...p,
-                                        element: el.tagName,
-                                        class: (el.className || '').substring(0, 50),
-                                        text: t.substring(0, 60),
-                                        depth: depth
-                                    });
+                                const hasExclude = excludePriceKw.some(kw => t.toLowerCase().includes(kw));
+                                if (!hasExclude) {
+                                    for (const p of prices) {
+                                        allPrices.push({
+                                            ...p,
+                                            element: el.tagName,
+                                            class: (el.className || '').substring(0, 50),
+                                            text: t.substring(0, 60),
+                                            depth: depth
+                                        });
+                                    }
                                 }
                             }
                         }
@@ -375,8 +380,8 @@ def scrape_hotel_price(hotel):
                 els = page.query_selector_all(ps)
                 for el in els:
                     raw = el.inner_text().strip()
-                    # Skip if text contains "save" or "off" (discount labels, not prices)
-                    if re.search(r'save|off|tax|fee', raw, re.IGNORECASE):
+                    # Skip if text contains discount/add-on labels, not prices
+                    if re.search(r'save|off|tax|fee|breakfast|optional', raw, re.IGNORECASE):
                         continue
                     num_m = re.search(r'[\d,]+\.?\d*', raw.replace(",", ""))
                     if num_m:

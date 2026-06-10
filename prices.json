@@ -14,10 +14,10 @@
     "currency": "SGD"
   },
   {
-    "name": "Hotel Koryu",
-    "room_name": "Japanese-Western-Room-Non-Smoking",
-    "url": "https://sg.trip.com/hotels/detail/?cityEnName=Fujikawaguchiko&cityId=50160&hotelId=1649211&checkIn=2026-12-11&checkOut=2026-12-12&locale=en-SG",
-    "last_price": 370,
+    "name": "Artator Jinjiang Park Hotel-Chengdu",
+    "room_name": "Freedom View King Room (Bathtub)",
+    "url": "https://sg.trip.com/hotels/detail/?hotelId=117491679&checkIn=2026-10-27&checkOut=2026-11-01&locale=en-SG",
+    "last_price": 200,
     "currency": "SGD"
   }
 ]

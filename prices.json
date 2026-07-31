@@ -9,15 +9,15 @@
   {
     "name": "Private Enjoy Travel Hotel (Jiuzhaigou)",
     "room_name": "Secret Realm Illusion Double Bed Room",
-    "url": "https://sg.trip.com/hotels/detail/?hotelId=4875335&checkIn=2026-10-26&checkOut=2026-10-27&locale=en-SG",
+    "url": "https://sg.trip.com/hotels/detail/?hotelId=4875335&checkIn=2026-10-26&checkOut=2026-10-28&locale=en-SG&crn=1&adult=2&children=0",
     "last_price": 112,
     "currency": "SGD"
   },
   {
     "name": "Artator Jinjiang Park Hotel-Chengdu",
     "room_name": "Freedom View King Room (Bathtub)",
-    "url": "https://sg.trip.com/hotels/detail/?hotelId=117491679&checkIn=2026-10-27&checkOut=2026-11-01&locale=en-SG",
-    "last_price": 18.1,
+    "url": "https://sg.trip.com/hotels/detail/?hotelId=117491679&checkIn=2026-10-28&checkOut=2026-11-01&locale=en-SG&crn=1&adult=2&children=0",
+    "last_price": 14.89,
     "currency": "SGD"
   }
 ]

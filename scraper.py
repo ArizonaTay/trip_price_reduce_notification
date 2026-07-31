@@ -122,7 +122,7 @@ def scrape_hotel_price(hotel):
                     return 'SGD';
                 };
 
-                const excludePriceKw = ['breakfast', 'optional', 'add-on', 'add on', 'supplement', 'extra'];
+                const excludePriceKw = ['save', 'off', 'tax', 'fee', 'breakfast', 'optional', 'add-on', 'add on', 'supplement', 'extra'];
 
                 const parsePriceAny = (text) => {
                     if (!text) return null;
@@ -228,7 +228,10 @@ def scrape_hotel_price(hotel):
 
                     if (allPrices.length > 0) {
                         allPrices.sort((a, b) => a.price - b.price);
-                        const best = allPrices[0];
+                        const maxPrice = allPrices[allPrices.length - 1].price;
+                        const filtered = allPrices.filter(p => p.price >= maxPrice * 0.15);
+                        const candidates = filtered.length > 0 ? filtered : allPrices;
+                        const best = candidates[0];
                         return { price: best.price, currency: best.currency, method: 'lowest_in_card', debug: `${best.element}:${best.depth}` };
                     }
                 }
@@ -284,7 +287,12 @@ def scrape_hotel_price(hotel):
                             if (!cards[cardIndex]) return null;
                             const card = cards[cardIndex];
 
+                            const excludePriceKw = ['save', 'off', 'tax', 'fee', 'breakfast', 'optional', 'add-on', 'add on', 'supplement', 'extra'];
+
                             const parsePrice = (text) => {
+                                if (!text) return null;
+                                const lower = text.toLowerCase();
+                                if (excludePriceKw.some(kw => lower.includes(kw))) return null;
                                 const m = text.match(/[A-Z$\\u00a5\\u20ac\\u00a3]?\\s*[\\d,]{2,}\\.?\\d*/);
                                 if (!m) return null;
                                 const raw = m[0].trim();
